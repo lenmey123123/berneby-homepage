@@ -1,0 +1,115 @@
+# ScrollStory Implementierung - Phase 3: Narrative & Scroll Integration
+
+**Ziel:** Die Verbindung zwischen dem Scroll-Fortschritt des Nutzers und der 3D-Szene herstellen. Dies beinhaltet die Implementierung der "DeKonstruktions"-Animationen, die Steuerung der Kamera und die dynamische Anzeige der narrativen Inhalte basierend auf der Scroll-Position.
+
+**Dauer:** 3 Wochen
+
+**Fokus:** GSAP-Timeline-Management, Synchronisation von Scroll-Fortschritt mit Animationen, Kamera-Choreografie und Zustandsmanagement für die narrativen Phasen.
+
+---
+
+## 🔗 Scroll-Animation-Synchronisation
+
+- [ ] **1.1: GSAP als Animations-Engine integrieren**
+  - **Ziel:** GSAP für präzise, steuerbare und performante Timeline-Animationen nutzen.
+  - **Anforderungen:**
+    - [ ] Stelle sicher, dass `gsap` aus Phase 1 installiert ist.
+    - [ ] Erstelle eine zentrale Animations-Timeline in `ScrollStoryContainer.tsx` mit `gsap.timeline()`. Setze `paused: true`, da wir die Timeline manuell steuern.
+
+- [ ] **1.2: `useScrollProgress` mit GSAP-Timeline verbinden**
+  - **Ziel:** Den Scroll-Fortschritt nutzen, um die GSAP-Timeline vor- und zurückzuspulen.
+  - **Anforderungen:**
+    - [ ] In `ScrollStoryContainer.tsx`, nutze einen `useEffect`, der auf Änderungen des `progress`-Wertes vom `useScrollProgress`-Hook reagiert.
+    - [ ] Innerhalb des Effekts, rufe `timeline.seek(progress * timeline.duration())` auf. Dies synchronisiert die Animation direkt mit der Scroll-Position.
+
+- [ ] **1.3: State Management für die narrative Phase einrichten**
+  - **Ziel:** Jederzeit wissen, in welcher der vier DeKonstruktions-Phasen sich der Nutzer befindet.
+  - **Anforderungen:**
+    - [ ] Nutze ein State-Management-Tool (z.B. Zustand, empfohlen für R3F) oder einen React Context, um den globalen Zustand (`progress`, `currentPhase`) zu verwalten.
+    - [ ] Erstelle in `ScrollStoryContainer.tsx` eine Logik, die den `progress` in eine `currentPhase` übersetzt (z.B. 0-0.25 -> 'LIVE_PRODUCT', 0.25-0.5 -> 'UI_UX', etc.).
+    - [ ] Speichere die `currentPhase` im globalen Store.
+
+---
+
+## 🎥 Kamera-Choreografie
+
+- [ ] **2.1: `CameraControls` von `@react-three/drei` einrichten**
+  - **Ziel:** Eine flexible und animierbare Kamerasteuerung.
+  - **Anforderungen:**
+    - [ ] Importiere `<CameraControls />` in `Scene.tsx`.
+    - [ ] Deaktiviere die User-Interaktion, da die Kamera durch das Scrollen gesteuert wird: `mouseButtons.left={0}` `touches.one={0}`.
+    - [ ] Hole dir eine `ref` auf die `CameraControls`, um sie von außen steuern zu können.
+
+- [ ] **2.2: Kamerafahrten zur GSAP-Timeline hinzufügen**
+  - **Ziel:** Die Kamera soll in jeder Phase eine andere Perspektive auf das Artefakt einnehmen.
+  - **Anforderungen:**
+    - [ ] Definiere für jede der vier Phasen eine Ziel-Kameraposition und ein Ziel-Target (Blickpunkt).
+    - [ ] Erstelle in `ScrollStoryContainer.tsx` eine Funktion, die die `CameraControls`-Ref entgegennimmt.
+    - [ ] Füge der GSAP-Timeline Animationen hinzu, die `controls.setLookAt(...)` mit den Zieldaten für jede Phase aufrufen. Nutze die `duration`- und `delay`-Parameter von GSAP, um die Übergänge an die Phasenlängen (jeweils 25% der Timeline) anzupassen.
+    - **Beispiel:**
+      ```javascript
+      // In der Timeline-Definition
+      timeline.to(controls, {
+        // Parameter für setLookAt
+        // ...
+        duration: 1, // Entspricht 25% der Gesamtdauer von 4
+      }, 0); // Startet bei 0s
+      timeline.to(controls, {
+        // Nächste Kameraposition
+        // ...
+        duration: 1,
+      }, 1); // Startet bei 1s
+      ```
+
+---
+
+## 💥 DeKonstruktions-Animationen
+
+- [ ] **3.1: Artefakt-Hülle fragmentieren**
+  - **Ziel:** Die äußere Hülle muss in animierbare Einzelteile zerlegt werden.
+  - **Anforderungen:**
+    - [ ] Anstatt einer einzelnen `DodecahedronGeometry`, erstelle für jede Fläche des Dodekaeders ein eigenes `THREE.Mesh`.
+    - [ ] **Technik:** Iteriere durch die Vertices der `DodecahedronGeometry` und erstelle für jede polygonale Fläche (Fünfeck) ein eigenes `ShapeGeometry`-Mesh.
+    - [ ] Gruppiere alle Fragmente in einer `<group ref={shellRef}>`.
+
+- [ ] **3.2: DeKonstruktions-Animation zur GSAP-Timeline hinzufügen**
+  - **Ziel:** Die Schichten des Artefakts sollen sich entsprechend der narrativen Phasen auflösen.
+  - **Anforderungen:**
+    - [ ] **Phase 1 -> 2 (UI/UX):** Animiere die Fragmente der äußeren Hülle. Bewege sie von ihrer ursprünglichen Position nach außen, als würden sie explodieren. Füge diese Animationen zur GSAP-Timeline im Bereich von `progress` 0.25 bis 0.5 hinzu.
+    - [ ] **Phase 2 -> 3 (Architektur):** Animiere die "Datenstrom"-Tori. Lasse sie verblassen (`material.opacity`) und sich auflösen (z.B. Skalierung auf 0). Füge dies zur Timeline im Bereich 0.5 bis 0.75 hinzu.
+    - [ ] **Phase 3 -> 4 (Konzept):** Der Kern bleibt sichtbar. Es sind keine weiteren DeKonstruktions-Animationen für das Artefakt selbst nötig.
+
+- [ ] **3.3: `HolographicPanel`-Animationen**
+  - **Ziel:** Die passenden holografischen Tafeln für jede Phase ein- und ausblenden.
+  - **Anforderungen:**
+    - [ ] Erstelle in `Scene.tsx` vier Instanzen von `HolographicPanel`, eine für jede narrative Phase.
+    - [ ] Gib jeder Tafel einen eindeutigen Namen oder eine ID.
+    - [ ] Steuere die `visible`-Eigenschaft und die `opacity` des Materials jeder Tafel über die GSAP-Timeline.
+    - **Logik:**
+      - Phase 1 (0-0.25): Tafel 1 ist sichtbar.
+      - Übergang (bei 0.25): Blende Tafel 1 aus, blende Tafel 2 ein.
+      - Phase 2 (0.25-0.5): Tafel 2 ist sichtbar.
+      - usw.
+
+---
+
+## 🧪 Testing & Validation
+
+- [ ] **4.1: Visuelles Debugging der Animationen**
+  - **Ziel:** Die Synchronisation und das Timing der Animationen überprüfen.
+  - **Anforderungen:**
+    - [ ] Nutze ein Debug-UI-Panel wie `leva` oder `dat.gui`.
+    - [ ] Füge einen Slider hinzu, der den `progress`-Wert (0-1) manuell steuert. Dies erlaubt es, die gesamte Animation ohne Scrollen zu überprüfen.
+    - [ ] **Checkpoint:** Beim Bewegen des Sliders sollte die gesamte DeKonstruktions-Sequenz inklusive Kamerafahrten und Panel-Wechsel flüssig und synchron ablaufen.
+
+- [ ] **4.2: State-Management-Tests**
+  - **Ziel:** Sicherstellen, dass der `currentPhase`-State korrekt aktualisiert wird.
+  - **Anforderungen:**
+    - [ ] Schreibe einen Unit-Test für den Zustandsspeicher (z.B. den Zustand-Store).
+    - [ ] Simuliere eine Änderung des `progress`-Wertes und überprüfe, ob die `currentPhase` korrekt auf 'LIVE_PRODUCT', 'UI_UX' etc. wechselt.
+
+- [ ] **4.3: Browser-Kompatibilität prüfen**
+  - **Ziel:** Die Darstellung auf verschiedenen Browsern (Chrome, Firefox, Safari) sicherstellen.
+  - **Anforderungen:**
+    - [ ] Teste die Seite manuell in den Zielbrowsern.
+    - [ ] Achte besonders auf die Performance von Animationen und die Darstellung der CSS-gestylten `Html`-Komponente.

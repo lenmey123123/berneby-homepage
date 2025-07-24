@@ -1,0 +1,133 @@
+ScrollStory Implementierung - Phase 1: Foundation & Core Architecture
+Ziel: Schaffung der grundlegenden Projektinfrastruktur, Einrichtung des SVG/2.5D-Layer-Stacks und Aufbau der Kernkomponenten. Diese Phase legt das stabile Fundament für die komplexen visuellen und interaktiven Features der Folgephasen.
+
+Dauer: 2 Wochen
+
+Fokus: Stabile SVG-Layer-Architektur, grundlegende Komponentenstruktur, Performance-Baseline und Einrichtung des Scroll-Trackings.
+
+📦 Dependencies & Setup
+[x] 1.1: Libraries installieren
+
+Führe den folgenden Befehl aus, um alle notwendigen Animations- und SVG-Hilfsbibliotheken zu installieren.
+
+npm install framer-motion
+
+[x] 1.2: Testing-Libraries verifizieren
+
+Stelle sicher, dass @testing-library/react und vitest korrekt konfiguriert sind, um die neuen Komponenten zu testen.
+
+📁 File & Component Structure
+[x] 2.1: Verzeichnisstruktur anlegen
+
+Erstelle die folgende Verzeichnisstruktur innerhalb von src/, um die neuen Komponenten und Hooks zu organisieren.
+
+src/
+├── components/
+│   └── scroll-story/
+│       ├── layers/
+│       │   ├── BlueprintLayer1.tsx
+│       │   ├── BlueprintLayer2.tsx
+│       │   ├── BlueprintLayer3.tsx
+│       │   └── BlueprintLayer4.tsx
+│       ├── ui/
+│       │   ├── Panel.tsx
+│       │   └── ExpertInsight.tsx
+│       └── ScrollStoryContainer.tsx
+├── hooks/
+│   └── useScrollProgress.ts
+└── types/
+    └── scrollstory.ts
+
+[x] 2.2: TypeScript-Typen definieren
+
+Erstelle in src/types/scrollstory.ts die grundlegenden Typdefinitionen für die narrativen Phasen, Panels und SVG-Layer.
+
+🏗️ Core Component Implementation
+[x] 3.1: ScrollStoryContainer.tsx erstellen
+
+Ziel: Die Haupt-Wrapper-Komponente, die den Scroll-Bereich definiert und den State für die gesamte Experience verwaltet.
+
+Anforderungen:
+[x] Erstelle eine Komponente, die ein div mit einer fixen Höhe rendert (z.B. 400vh), um den Scroll-Bereich zu erzeugen.
+[x] Nutze einen useRef für das scrollbare Container-Element.
+[x] Implementiere einen State (z.B. mit useState), um den Scroll-Fortschritt (progress) zu speichern.
+[x] Binde hier die SVG-Layer-Komponenten und die UI-Elemente ein.
+
+[x] 3.2: useScrollProgress.ts Hook erstellen
+
+Ziel: Ein wiederverwendbarer Hook, der den Scroll-Fortschritt innerhalb eines Elements von 0 bis 1 misst.
+
+Anforderungen:
+[x] Der Hook soll eine ref auf ein DOM-Element als Argument akzeptieren.
+[x] Füge einen scroll-Event-Listener zum window hinzu.
+[x] Berechne den prozentualen Scroll-Wert basierend auf der Position des Elements im Viewport.
+[x] Gib den Fortschritt (eine Zahl zwischen 0 und 1) zurück.
+
+[ ] Testing: Schreibe Unit-Tests für den Hook, die das Scroll-Verhalten simulieren und den korrekten Fortschrittswert überprüfen.
+
+[x] 3.3: BlueprintLayer-Komponenten erstellen
+
+Ziel: Die zentralen SVG-Layer-Komponenten für jede Story-Phase.
+
+Anforderungen:
+[x] Jede Phase erhält eine eigene SVG-Komponente (BlueprintLayer1-4).
+[x] Die Layer werden im Stack gerendert und können einzeln animiert werden.
+[x] Die Layer sind so gestaltet, dass sie fragmentiert, hervorgehoben und mit Panels/Insights kombiniert werden können.
+
+[x] 3.4: Panel.tsx (Overlay) erstellen
+
+Ziel: Eine Panel-Komponente, die die Schlüsselwörter und Inhalte jeder Phase als Overlay anzeigt.
+
+Anforderungen:
+[x] Panel ist ein zentrales UI-Overlay, das zur aktuellen Phase passt.
+[x] Styling mit Tailwind CSS und Framer Motion für Ein-/Ausblend-Animationen.
+
+[x] Checkpoint: Auf der Seite sollte nun eine scrollbare Fläche, ein SVG-Layer-Stack und ein Panel-Overlay sichtbar sein.
+
+🧪 Testing & Validation
+[ ] 4.1: useScrollProgress Hook testen
+
+Ziel: Sicherstellen, dass der Scroll-Fortschritt präzise berechnet wird.
+
+Anforderungen:
+[ ] Schreibe einen Vitest-Test, der den Hook rendert und ein simuliertes Scroll-Event auslöst.
+[ ] Überprüfe, ob der zurückgegebene Wert korrekt ist (z.B. 0.5 bei halbem Scrollen).
+
+[ ] 4.2: ScrollStoryContainer Integrationstest
+
+Ziel: Sicherstellen, dass der Container die SVG-Layer korrekt einbettet und der Scroll-Hook angebunden ist.
+
+Anforderungen:
+[ ] Erstelle einen Test mit @testing-library/react.
+[ ] Rendere den ScrollStoryContainer.
+[ ] Überprüfe, ob das SVG-Element im DOM vorhanden ist.
+[ ] Simuliere ein Scroll-Event und stelle sicher, dass der State (oder ein angebundenes Element) entsprechend aktualisiert wird.
+
+🚀 Performance & Quality Assurance
+[x] 5.1: Performance-Baseline erstellen
+
+Ziel: Einen initialen Performance-Wert als Referenz für zukünftige Optimierungen festlegen.
+
+Anforderungen:
+[x] Integriere die web-vitals-Bibliothek in src/app/layout.tsx oder einer äquivalenten globalen Datei.
+[x] Logge die Core Web Vitals (LCP, INP, CLS) in der Konsole.
+[x] Führe einen initialen Lighthouse-Audit durch und speichere den Report.
+
+Benchmark-Ziel: Lighthouse Score > 95 für Performance (ohne SVG-Last).
+
+[ ] 5.2: Code-Qualität sicherstellen
+
+Ziel: Einhaltung der Projektstandards.
+
+Anforderungen:
+[ ] Aktiviere den TypeScript strict mode für alle neuen Dateien.
+[ ] Konfiguriere Biome/ESLint, um die neuen Verzeichnisse zu linten und zu formatieren.
+[ ] Richte einen Git-Hook (Husky) ein, der den Linter vor jedem Commit ausführt.
+
+Phasen-Abschluss-Check:
+
+Die grundlegende Architektur steht.
+Ein SVG-Layer-Stack und ein Panel-Overlay werden gerendert.
+Der Scroll-Fortschritt wird zuverlässig getrackt.
+Alle neuen Komponenten und Hooks haben grundlegende Tests.
+Eine Performance-Baseline ist dokumentiert.

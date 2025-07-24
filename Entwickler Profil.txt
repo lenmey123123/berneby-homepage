@@ -1,0 +1,45 @@
+Entwicklerprofil & Ressourcendokument – berneby
+Dieses Dokument dient als zentrale Orientierung für alle angebundenen KI-Agenten, LLMs und Workflows. Es beschreibt kompakt, woran gearbeitet wird, wer beteiligt ist und welche Ressourcen, Tools und Regeln für Projekte bei berneby gelten. Es ist darauf ausgelegt, sowohl von Gemini Gems für Deep Research als auch von Coding-Agents (z. B. im Cursor Agenten Modus) direkt verwertet zu werden.
+
+1. Grundinformationen
+Unternehmen: berneby – Allgemeine Softwareentwicklungs-Agentur (alle Softwarebereiche)
+
+Ansprechpartner: Lennard (Fullstack, vibecoder, Solo-Developer)
+
+Projektarten:
+
+Web-Anwendungen
+
+SaaS-Produkte
+
+Automatisierungs- und Prozess-Tools
+
+Sonderentwicklungen auf Anfrage
+
+Keine branchenspezifischen Einschränkungen – alle Softwaredomänen werden bedient
+
+2. Ziele und Arbeitsphilosophie
+Oberziele:
+
+Effizienz und Innovation auf dem neuesten Stand
+
+Maximale KI-Nutzung zur Steigerung von Produktivität, Kreativität und Codequalität
+
+Möglichst vollständige Automatisierung des Entwicklungsprozesses
+
+Reine Nutzung kostenloser und Open-Source-Lösungen
+
+Entscheidungsbeteiligung:
+
+Wichtigste Design-, Architektur- und Feature-Entscheidungen erfolgen stets durch Lennard
+
+KI/Agents entwickeln und schlagen Lösungen vollständig autonom vor
+
+Feedback, Freigaben und Leitentscheidungen erfolgen durch Lennard
+
+3. Technische Ressourcen & Arbeitsumgebung
+Kategorie	Tool / Ressource	Bemerkung/Fokus
+Entwicklungsumgebung	Cursor IDE	Hauptarbeitsumgebung, Agentenmodus,
+Wissensmanagement	Obsidian	Alle Wissensdokumente, versioniert, lokal dokumentiert
+KI-Zugänge	Gemini Gems("Web Dev Agent", "Workflow Automation, KI-Nutzung & Wissensmanagement"), ChatGPT 4.5, Gemini 2.5 Pro, Perplexity Ai,(Alle anderen kostenlosen Kis)	
+Betriebssystem	Mac OS

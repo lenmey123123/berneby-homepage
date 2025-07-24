@@ -1,0 +1,139 @@
+# AI Process Control for "ScrollStory Implementation"
+
+## 0. Initialisierungsphase (Nur beim allerersten Start der ScrollStory-Implementierung ausführen)
+
+-   **Aktion 1: ScrollStory-Projektprotokoll erstellen**
+    -   Erstelle eine neue Datei im Root-Verzeichnis namens `SCROLLSTORY_PROTOCOL.md`.
+    -   Füge den folgenden Inhalt in diese Datei ein:
+        ```markdown
+        # ScrollStory-Implementierungsprotokoll für "berneby development"
+
+        Dieses Dokument dient als zentrale Informationsquelle für die 5-phasige Implementierung der interaktiven 3D-ScrollStory.
+
+        ## 1. ScrollStory-Architektur & Technologien
+        - **Three.js**: 3D-Rendering und Geometrie
+        - **React Three Fiber**: React-Integration für Three.js
+        - **GSAP**: Timeline-Animationen und Scroll-Synchronisation
+        - **Framer Motion**: UI-Animationen und Transitions
+        - **Zustand**: State Management für komplexe Interaktionen
+        - **Leva**: Debug-UI für Sandbox-Modus
+
+        ## 2. Projektstruktur-Referenzen
+        - **ScrollStory-PRD:** `/.husky/scrollstory-tasks/ScrollStory-PRD.txt`
+        - **ScrollStory-Tasklisten:** `/.husky/scrollstory-tasks/ScrollStory Implementierung - Phase 1-5.txt`
+        - **Bestehende Website:** `/berneby-website/`
+        - **Bestehende Tasks:** `/tasks/` (bereits implementierte Phasen 1-3)
+        - **Bestehende PRDs:** `/prd/` (bereits implementierte Phasen 1-3)
+
+        ## 3. ScrollStory-Implementierungsphasen
+        - **Phase 1:** Foundation & Core Architecture (2-3 Wochen)
+        - **Phase 2:** 3D Artefakt & Visual System (3-4 Wochen)
+        - **Phase 3:** Narrative & Scroll Integration (2-3 Wochen)
+        - **Phase 4:** Interactivity & User Experience (2-3 Wochen)
+        - **Phase 5:** Optimization & Integration (1-2 Wochen)
+
+        ## 4. Wichtige Architekturentscheidungen
+        - **3D-Framework:** Three.js mit React Three Fiber
+        - **Animation-Engine:** GSAP für Timeline-Synchronisation
+        - **State Management:** Zustand für globale ScrollStory-States
+        - **Performance:** Lazy Loading und Code Splitting
+        - **Fallbacks:** 2D-Alternative für WebGL-Inkompatibilität
+
+        ## 5. ScrollStory-Entwicklungs-Logbuch
+        *(Hier werden wichtige Entscheidungen und Änderungen der ScrollStory-Implementierung protokolliert)*
+        ```
+-   **Aktion 2: Bestätigung**
+    -   Informiere den Benutzer: "Das `SCROLLSTORY_PROTOCOL.md` wurde erstellt. Ich bin bereit, mit der ersten Aufgabe aus `/.husky/scrollstory-tasks/ScrollStory Implementierung - Phase 1.txt` zu beginnen. Soll ich starten?"
+    -   **WARTE** auf die Bestätigung des Benutzers.
+
+## 1. ScrollStory-Task-Implementierungsprotokoll
+
+-   **Regel 1: Ein Sub-Task nach dem anderen.** Beginne **NIEMALS** mit dem nächsten Sub-Task, bevor der Benutzer den aktuellen explizit mit "ja", "weiter" oder einer ähnlichen Bestätigung genehmigt hat.
+-   **Regel 2: Interaktive Entscheidungsfindung.**
+    -   Wenn ein Task eine wichtige Design-Entscheidung oder eine detaillierte Implementierung erfordert, die im ScrollStory-PRD Raum für Interpretation lässt (z.B. die genaue 3D-Geometrie, das exakte Material-Setup, die Kamerabewegungen), **HALTE AN**.
+    -   Stelle dem Benutzer eine präzise, komplexe Multiple-Choice-Frage.
+    -   Begründe jede Option kurz und beziehe dich dabei auf die relevanten Abschnitte im ScrollStory-PRD.
+    -   **WARTE** auf die Entscheidung des Benutzers, bevor du fortfährst.
+-   **Regel 3: Fortgeschrittene Prompting-Techniken anwenden.** Nutze die folgenden strukturierten Anweisungen, je nach Komplexität der Aufgabe:
+    -   **Für komplexe 3D-Logik (Standard): Chain-of-Thought (CoT)**
+        -   Beginne deine Implementierung mit der Anweisung: "Ich werde diese 3D-Aufgabe mit der Chain-of-Thought-Methode lösen."
+        -   Lege deine logischen Schritte offen, *bevor* du den Code schreibst. (z.B. "Schritt 1: Ich werde die Geometrie erstellen. Schritt 2: Ich werde das Material anwenden. Schritt 3: Ich werde die Animation hinzufügen...").
+    -   **Für Konsistenz (Standard): Few-Shot Prompting**
+        -   Wenn du eine ScrollStory-Komponente erstellst, die ein Äquivalent in der bestehenden Website hat, nutze dieses als Vorlage.
+        -   Beginne deine Arbeit mit: "Ich werde diese Aufgabe unter Verwendung von `[Dateipfad zu bestehender Komponente]` als Few-Shot-Beispiel implementieren, um die Konsistenz sicherzustellen."
+    -   **Für Multi-Datei-Operationen (Experten-Modus): ReAct (Reason + Act)**
+        -   Wenn ein Task das Erstellen oder Bearbeiten mehrerer Dateien erfordert, wende den ReAct-Zyklus an.
+        -   Strukturiere deine Antwort wie folgt: `Gedanke: ... Aktion: ... Beobachtung: ...` und warte nach jeder **Aktion** auf eine Bestätigung.
+    -   **Für kritische 3D-Architektur-Entscheidungen (Experten-Modus): Self-Consistency**
+        -   Wenn du eine architektonische Entscheidung treffen musst, die nicht explizit im ScrollStory-PRD definiert ist, wende die Self-Consistency-Methode an.
+        -   Beginne mit: "Dies ist eine kritische 3D-Entscheidung. Ich werde mehrere Lösungswege skizzieren und bewerten."
+        -   Präsentiere mindestens zwei Ansätze, bewerte sie anhand der Kriterien aus dem ScrollStory-PRD und gib eine begründete Empfehlung ab. **WARTE** auf die Entscheidung des Benutzers.
+
+## 2. ScrollStory-Task-Abschluss-Protokoll
+
+-   **Schritt 1: Sub-Task-Abschluss**
+    -   Wenn du einen Sub-Task abgeschlossen hast, markiere ihn sofort in der relevanten `/.husky/scrollstory-tasks/ScrollStory Implementierung - Phase X.txt`-Datei mit `[x]`.
+    -   Informiere den Benutzer über den Abschluss und frage nach der Freigabe für den nächsten Schritt. Beispiel: "Task 1.1 ist abgeschlossen. Soll ich mit Task 1.2 fortfahren?"
+-   **Schritt 2: Haupt-Task-Abschluss & Manueller Review**
+    -   Wenn **alle** Sub-Tasks eines Haupt-Tasks (z.B. alle `1.x`-Tasks) abgeschlossen sind, führe folgende Sequenz aus:
+        1.  **Anhalten:** Informiere den Benutzer: "Alle Tasks für `[Haupt-Task-Titel]` sind abgeschlossen. Bitte überprüfen Sie die bisher implementierte 3D-Funktionalität jetzt im Browser."
+        2.  **Feedback einholen:** Frage explizit: "Gibt es Feedback oder Änderungswünsche, oder soll ich die Änderungen committen und mit der nächsten Phase fortfahren?"
+        3.  **WARTE** auf das Feedback und die Freigabe des Benutzers.
+        4.  **Tests ausführen:** Führe nach der Freigabe den Befehl `cd berneby-website && npm test` aus, um die Vitest-Suite zu starten.
+        5.  **Commit (nur wenn Tests erfolgreich):** Führe den `git commit`-Befehl mit einer aussagekräftigen, einzeiligen Nachricht im "Conventional Commits"-Format aus. Beispiel: `git commit -m "feat(scrollstory): implement phase 1 foundation and core architecture" -m "- Adds Three.js and React Three Fiber integration" -m "- Creates ScrollStoryContainer and useScrollProgress hook" -m "- Completes tasks 1.0-5.0 from ScrollStory Phase 1"`
+        6.  **Haupt-Task markieren:** Markiere den Haupt-Task (z.B. `[ ] 1.0 ...`) in der Task-Liste als abgeschlossen (`[x]`).
+
+## 3. ScrollStory-Phasenübergangs-Protokoll
+
+-   **Regel:** Bevor du mit der ersten Aufgabe einer neuen ScrollStory-Phase beginnst (z.B. Task 2.1 nach Abschluss von Phase 1), führe dieses Protokoll aus:
+    1.  **Anhalten:** Informiere den Benutzer: "ScrollStory Phase 1 ist vollständig abgeschlossen und committet. Ich bin bereit, mit Phase 2: 3D Artefakt & Visual System zu beginnen."
+    2.  **Kontext-Analyse:** Gib an: "Um einen nahtlosen Anschluss zu gewährleisten, werde ich jetzt das gesamte Projekt neu analysieren. Ich lese: `@.husky/scrollstory-tasks/ScrollStory-PRD.txt`, alle `@.husky/scrollstory-tasks/ScrollStory Implementierung - Phase X.txt`, die bestehende Website-Struktur und alle bereits implementierten Komponenten."
+    3.  **Bestätigung einholen:** Frage: "Soll ich mit der Analyse und danach mit Task 2.1 beginnen?"
+    4.  **WARTE** auf die Bestätigung des Benutzers.
+
+## 4. ScrollStory-Dateiverwaltung
+
+-   **Regel 1: "Relevant Files" pflegen:** Halte den `Relevant Files`-Abschnitt in der aktiven ScrollStory-Task-Liste immer auf dem neuesten Stand. Füge jede erstellte oder signifikant geänderte Datei mit einer kurzen Beschreibung hinzu.
+-   **Regel 2: ScrollStory-Komponenten-Struktur:** Alle neuen ScrollStory-Komponenten werden im Verzeichnis `berneby-website/src/components/scroll-story/` erstellt, mit der folgenden Struktur:
+    - `3d/` - Three.js-spezifische Komponenten (Artefact.tsx, Scene.tsx)
+    - `ui/` - UI-Komponenten (HolographicPanel.tsx, ExpertInsight.tsx)
+    - `ScrollStoryContainer.tsx` - Haupt-Wrapper-Komponente
+-   **Regel 3: ScrollStory-Hooks:** Alle ScrollStory-spezifischen Hooks werden im Verzeichnis `berneby-website/src/hooks/` erstellt (z.B. useScrollProgress.ts).
+-   **Regel 4: ScrollStory-Libraries:** Alle Three.js-spezifischen Utilities werden im Verzeichnis `berneby-website/src/lib/three/` erstellt (z.B. materials.ts, animations.ts).
+
+## 5. ScrollStory-Performance-Protokoll
+
+-   **Regel 1: Performance-Monitoring:** Nach jedem Haupt-Task führe einen Performance-Check durch:
+    - Führe `cd berneby-website && npm run build` aus
+    - Überprüfe die Bundle-Größe und Performance-Metriken
+    - Dokumentiere die Ergebnisse im `SCROLLSTORY_PROTOCOL.md`
+-   **Regel 2: 3D-Performance-Optimierung:** Bei Performance-Problemen:
+    - Reduziere die Geometrie-Komplexität
+    - Optimiere die Material-Eigenschaften
+    - Implementiere Level-of-Detail (LOD) für komplexe Objekte
+    - Verwende InstancedMesh für identische Objekte
+
+## 6. ScrollStory-Testing-Protokoll
+
+-   **Regel 1: Unit-Tests:** Für jede neue ScrollStory-Komponente erstelle entsprechende Unit-Tests in `berneby-website/src/components/scroll-story/__tests__/`.
+-   **Regel 2: Integration-Tests:** Nach jeder Phase führe Integration-Tests durch, um sicherzustellen, dass die ScrollStory nahtlos in die bestehende Website integriert ist.
+-   **Regel 3: Browser-Kompatibilität:** Teste die ScrollStory in Chrome, Firefox und Safari, um WebGL-Kompatibilität sicherzustellen.
+
+## 7. ScrollStory-Fallback-Protokoll
+
+-   **Regel 1: WebGL-Support-Check:** Implementiere einen WebGL-Support-Check vor dem Rendering der 3D-Szene.
+-   **Regel 2: Fallback-Komponente:** Erstelle eine 2D-Fallback-Komponente für Nutzer ohne WebGL-Unterstützung.
+-   **Regel 3: Progressive Enhancement:** Stelle sicher, dass die grundlegende Funktionalität auch ohne 3D-Rendering funktioniert.
+
+Das Hauptverzeichnis des Website-Codes ist im Ordner `berneby-website/`. Alle ScrollStory-Implementierungen erfolgen innerhalb dieser bestehenden Projektstruktur.
+-   **Regel:** Bevor du mit der ersten Aufgabe einer neuen Phase beginnst (z.B. Task 2.1 nach Abschluss von Phase 1), führe dieses Protokoll aus:
+    1.  **Anhalten:** Informiere den Benutzer: "Phase 1 ist vollständig abgeschlossen und committet. Ich bin bereit, mit Phase 2: Narrative & Core Frontend zu beginnen."
+    2.  **Kontext-Analyse:** Gib an: "Um einen nahtlosen Anschluss zu gewährleisten, werde ich jetzt das gesamte Projekt neu analysieren. Ich lese: `@.cursor.rules`, `@PROJECT_PROTOCOL.md`, alle `@prd/phase-*.md` und alle `@tasks/phase-*.md` Dateien."
+    3.  **Bestätigung einholen:** Frage: "Soll ich mit der Analyse und danach mit Task 2.1 beginnen?"
+    4.  **WARTE** auf die Bestätigung des Benutzers.
+
+## 4. Dateiverwaltung
+
+-   **Regel 1: "Relevant Files" pflegen:** Halte den `Relevant Files`-Abschnitt in der aktiven `tasks/phase-*.md`-Datei immer auf dem neuesten Stand. Füge jede erstellte oder signifikant geänderte Datei mit einer kurzen Beschreibung hinzu.
+
+das Hauptverzeichnis des Websiten codes ist im Root der Ornder berneby-website

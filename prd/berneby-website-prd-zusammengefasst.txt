@@ -1,0 +1,220 @@
+berneby development - Product Requirement Document
+1. 📋 Executive Summary
+Projekt: berneby development - Unternehmens-Website & Interaktives Portfolio
+Version: 1.0
+Datum: 20. Juli 2025
+Status: Final
+Produkt-Typ: Hybride Narrative Showcase-Website & Portfolio
+1.1. Vision Statement
+Wir schaffen ein immersives, narratives Web-Erlebnis, das die technische Exzellenz und kreative Vision von "berneby development" demonstriert. Die Website dient als lebendiges Aushängeschild, das durch eine fesselnde Geschichte, innovative Interaktionen und eine makellose technische Umsetzung potenzielle Kunden nicht nur informiert, sondern inspiriert und von unserer Fähigkeit überzeugt, herausragende digitale Produkte zu entwickeln. Sie ist nicht nur eine Website über unsere Arbeit, sie ist unsere Arbeit.
+1.2. Top-Level Ziele
+Performance als Feature: Ein Lighthouse Score von > 95 auf Desktop & Mobile ist nicht nur ein Ziel, sondern ein zentrales Feature, das durch eine konsequente React Server Components (RSC) Architektur untermauert wird.
+Barrierefreiheit als Standard: Vollständige WCAG 2.2 Level AA Konformität ist nicht verhandelbar. Dies beinhaltet eine proaktiv gestaltete "Bewegung reduzieren"-Option, die ein alternatives, ruhigeres Erlebnis bietet.
+Engagement durch Immersion: Maximierung der Verweildauer und der Nutzerbindung durch eine einzigartige Scrollytelling-Struktur, die nahtlos in eine interaktive Projektgalerie übergeht.
+Qualifizierte Konversion: Generierung hochwertiger Projektanfragen durch einen innovativen, interaktiven "Collaborative Blueprint", der den traditionellen Kontaktprozess ersetzt und den Nutzer von Beginn an einbindet.
+2. 🎯 Product Overview
+2.1. Problem Statement
+Potenzielle Kunden, insbesondere aus dem Business- und Design-Bereich, können die Tiefe und Qualität von Softwareentwicklung oft nur schwer einschätzen. Standard-Portfolio-Websites sind austauschbar, statisch und vermitteln nicht die tatsächliche Fähigkeit eines Entwicklungsunternehmens, innovative, performante und architektonisch durchdachte Lösungen zu liefern. Sie scheitern daran, Vertrauen in die technische und konzeptionelle Kompetenz aufzubauen.
+2.2. Solution Overview
+Wir entwickeln eine Website, die selbst der Beweis der eigenen Kompetenz ist. Durch eine narrative Scrollytelling-Struktur wird der Besucher auf eine geführte Reise durch die Philosophie, die Prozesse und die Fähigkeiten von "berneby development" mitgenommen. Modernste Frontend-Technologien (RSC, Framer Motion) und einzigartige Interaktionsmuster (Blob-Cursor, Parallax-Effekte) machen die technische Meisterschaft direkt erlebbar. Ein innovativer Projekt-Konfigurator am Ende der Reise verwandelt die Kontaktaufnahme von einer Hürde in ein kollaboratives Erlebnis. Die Seite wird durch ein Headless CMS verwaltet, um Agilität und einfache Inhalts-Updates zu gewährleisten.
+2.3. Target Audience
+Primär: Produkt-Manager & Business-Entscheider (CEOs, Gründer): Sie müssen von der Professionalität, der strategischen Denkweise und dem potenziellen ROI einer Zusammenarbeit überzeugt werden. Die narrative Struktur und der "Collaborative Blueprint" sprechen sie direkt an.
+Primär: Marketing- & Design-Abteilungen: Sie legen Wert auf Markenidentität, visuelle Originalität und User Engagement. Die einzigartige Ästhetik, die Interaktionen und das Storytelling sind entscheidend für diese Gruppe.
+Sekundär: Technische Entscheider (CTOs, Lead-Entwickler): Sie werden durch die makellose Performance, die moderne Architektur (RSC, Modular Monolith), den sauberen Code (sichtbar im "Blick unter die Haube"-Easter-Egg) und die subtilen technischen Details überzeugt.
+2.4. User Stories
+Als Produkt-Manager möchte ich den Entwicklungsprozess und die Philosophie von "berneby development" visuell und interaktiv erleben, um zu beurteilen, ob ihre Arbeitsweise zu unserem Projekt passt.
+Als Marketing-Leiterin möchte ich sehen, dass "berneby development" in der Lage ist, eine starke, einzigartige visuelle Identität und ein fesselndes Nutzererlebnis zu schaffen, das unsere Marke vom Wettbewerb abhebt.
+Als CTO möchte ich eine Website erleben, die technisch auf dem neuesten Stand und extrem performant ist, um Vertrauen in die Fähigkeit des Unternehmens zu gewinnen, komplexe und skalierbare Anwendungen zu bauen.
+Als Gründer eines Start-ups möchte ich mein Projekt unkompliziert und visuell skizzieren können, um schnell eine erste Einschätzung zu erhalten und den Dialog zu starten.
+3. 🏗️ Technische Architektur
+3.1. Architektur-Übersicht
+Die Architektur ist als hybrides System konzipiert, das die Stärken einer serverseitigen, performanten Auslieferung mit hochgradig interaktiven, clientseitigen "Inseln" kombiniert.
+graph TD
+    subgraph "Browser"
+        User(👤 User) --> FE[Next.js 15 Frontend]
+    end
+
+    subgraph "Hosting & Infrastruktur"
+        FE -- Request --> Vercel[Vercel Edge Network]
+        Vercel -- Server-Side Rendering (RSC) --> NodeRuntime[Node.js Runtime]
+        NodeRuntime -- API Call --> HeadlessCMS[Strapi / Contentful API]
+        NodeRuntime -- API Call --> BackendAPI[Modular Monolith API]
+        Vercel -- Statische Assets --> CDN[Edge CDN]
+    end
+    
+    subgraph "Backend Services (AWS)"
+        BackendAPI -- auf --> ECS[AWS ECS/Fargate]
+        ECS -- Datenzugriff --> DB[(PostgreSQL)]
+    end
+
+    User -- Interaktionen (Client-Side) --> FE
+
+
+3.2. Backend-Architektur
+Architekturmuster: Modular Monolith. Entwickelt mit Node.js (z.B. mit NestJS oder Fastify), um eine typsichere und strukturierte Entwicklung zu gewährleisten. Die Logik ist in klar getrennte Module aufgeteilt:
+content-service: Stellt die über das Headless CMS verwalteten Inhalte (Projekttexte, Blogartikel etc.) für die RSCs bereit.
+contact-service: Verarbeitet die Logik des "Collaborative Blueprint" und des "Quick-Connect"-Formulars, validiert die Eingaben und versendet Benachrichtigungen.
+API-Design: Interne, leichtgewichtige REST-APIs. Die Endpunkte sind ausschließlich für die Kommunikation mit dem Next.js-Frontend vorgesehen und nicht öffentlich zugänglich.
+Datenbank-Technologie: PostgreSQL. Wird primär für strukturierte Daten genutzt, die nicht im CMS liegen (z.B. gespeicherte Projekt-Blueprints von Anfragen).
+Headless CMS: Strapi (oder alternativ Contentful). Dies ist die "Single Source of Truth" für alle redaktionellen Inhalte (Projekte, Seitentexte, Blogartikel). Dies ermöglicht berneby development, Inhalte ohne Code-Änderungen zu pflegen.
+3.3. Frontend-Architektur
+Framework: Next.js 15 mit React 19. Die Architektur ist konsequent "Server-First". Die meisten Komponenten sind standardmäßig React Server Components (RSCs), um die an den Client gesendete JavaScript-Menge zu minimieren.
+Styling: Tailwind CSS. Für effizientes, Utility-First-Styling, das im Build-Prozess zu hochoptimiertem CSS kompiliert wird.
+State Management & Interaktivität:
+Server-Daten: Werden direkt in RSCs via async/await aus dem Headless CMS oder dem Backend-API geholt.
+Client-Interaktivität: Komplexe, interaktive Sektionen werden als "Client-Inseln" ('use client') implementiert. Dies gilt insbesondere für:
+Die gesamte Scrollytelling-Choreografie.
+Der BlobCursor.
+Die InfiniteScroll-Projektgalerie.
+Der "Collaborative Blueprint".
+Animations-Bibliothek: Framer Motion wird für die meisten UI-Animationen und die Physik der Interaktionen genutzt, da es sich nahtlos in React integriert. GSAP kann für besonders komplexe Scrollytelling-Sequenzen als Alternative in Betracht gezogen werden.
+Build-Tool: Vite (via Next.js/Turbopack) für eine blitzschnelle Developer Experience und optimierte Produktions-Builds.
+3.4. Infrastruktur & Deployment
+Frontend Hosting: Vercel. Die erste Wahl für Next.js-Anwendungen, um Features wie RSC-Streaming, Edge Functions und optimierte CDN-Auslieferung voll auszuschöpfen.
+Backend Hosting: Der modulare Monolith wird als Docker-Container auf AWS ECS mit Fargate betrieben, um eine skalierbare und wartungsarme Umgebung zu schaffen.
+Headless CMS Hosting: Je nach Wahl, entweder self-hosted (Strapi) auf AWS oder als SaaS-Lösung (Contentful).
+CI/CD: GitHub Actions. Ein Workflow wird eingerichtet, der bei jedem Push in das main-Branch automatisch Tests ausführt, einen Build erstellt und das Frontend auf Vercel sowie das Backend auf AWS deployt.
+4. 🎨 UI/UX Design & Anforderungen
+4.1. Visuelle Identität: "Strukturierter Retro-Futurismus"
+Der visuelle Stil ist eine bewusste Synthese aus zwei scheinbar widersprüchlichen Polen:
+Struktur & Minimalismus: Das Grundlayout ist extrem sauber, basiert auf einem klaren Raster und nutzt großzügigen Weißraum. Die Struktur der Seite ist jederzeit sichtbar und nachvollziehbar.
+Emotion & Retro-Futurismus: Die emotionale Ebene wird durch expressive, detailreiche Illustrationen und UI-Elemente geschaffen, die an die Ästhetik alter Computer-Terminals und früher Science-Fiction erinnern.
+4.2. Farbpalette: "High-Tech Nostalgia"
+Primärer Hintergrund: Ein sehr dunkles, fast schwarzes Blau (#0A192F).
+Primäre Textfarbe: Ein gebrochenes, leicht cremefarbenes Weiß (#E6F1FF) für exzellente Lesbarkeit.
+Primäre Akzentfarbe: Ein leuchtendes, "elektrisches" Blau (#64FFDA), das für alle interaktiven Elemente, Links und Highlights verwendet wird.
+Sekundäre Akzentfarben: Subtile Grau- und Blautöne für Ränder, inaktive Zustände und feine Details.
+4.3. Typografie
+Headlines: Playfair Display (Serifenschrift). Verleiht den Überschriften Gewicht, Eleganz und einen klassischen, buchdruckartigen Charakter.
+Fließtext & UI-Elemente: Inter (Sans-Serif). Garantiert maximale Lesbarkeit und eine moderne, saubere Anmutung für alle Texte und UI-Beschriftungen.
+4.4. Ikonografie & Illustrationen
+Icons: Gefüllte Retro-Formen. Alle Icons sind als gefüllte, geometrische Formen mit leicht abgerundeten Ecken gestaltet. Sie haben einen subtilen inneren Schatten, um eine weiche, "kneteartige" Anmutung (Claymorphism-Anleihe) zu erzeugen, die sie freundlich und greifbar macht.
+Illustrationen: Die narrativen Kapitel werden von großflächigen, detailreichen Illustrationen begleitet, die den Stil von Retro-Science-Fiction-Konzeptkunst aufgreifen.
+4.5. Interaktionsdesign & Animationen
+Cursor: Der Standard-Cursor wird durch den BlobCursor ersetzt.
+Verhalten: Er folgt der Maus mit einer subtilen orbitalen Anziehung (Gravitations-Physik) um interaktive Elemente. Er verformt sich organisch und nimmt bei Hover über Links die primäre Akzentfarbe an.
+Seitenübergänge: Die Navigation zwischen den (wenigen) Unterseiten erfolgt nicht durch einen harten Reload, sondern durch eine flüssige, bildschirmfüllende Fade- oder PixelTransition-Animation.
+Ladeerlebnis: Progressive Enthüllung. Die Seite lädt dank RSC sofort mit sichtbarem Text. Interaktive Elemente erscheinen mit einer dezenten Fade-In-Animation. Status-Updates (z.B. Formularversand) werden durch minimalistische "Toast"-Benachrichtigungen am unteren Bildschirmrand kommuniziert.
+5. 📱 Feature Specifications
+5.1. Core Feature 1: Narrative Scrollytelling Homepage
+Die Startseite ist eine vertikal scrollbare, narrative Reise, die den Nutzer durch die Geschichte von "berneby development" führt.
+Struktur: Die Erzählung folgt einer Mischung aus "Problem-Löser" und "Technologie-Visionär".
+Kapitel 1: Der Hook (Das Problem)
+Visuell: Eine bildschirmfüllende, abstrakte Animation, die Chaos oder Langsamkeit symbolisiert.
+Text: Eine kühne Frage wie "Ist Ihr Web-Erlebnis nur eine weitere Zeile im Quellcode?". Text erscheint mit ScrollReveal.
+Kapitel 2: Die Vorstellung (Die Philosophie)
+Visuell: Der berneby-Pass (minimalistisch & holografisch) erscheint und sammelt sein erstes Badge. Im Hintergrund entfalten sich interaktive 3D-Objekte, die die Kernwerte "Innovation", "Sicherheit" und "Benutzerzentrierung" repräsentieren.
+Text: Vorstellung der Philosophie von "berneby development".
+Kapitel 3: Der Prozess (Die Kompetenz)
+Visuell: Eine animierte Sequenz zeigt den Prozess von der Idee (Skizze) über die Architektur (Diagramm) zum Code (Terminal) und zum finalen Design.
+Text: Erläuterung der Arbeitsweise und der Kernkompetenzen.
+Kapitel 4: Der Übergang (Die Einladung)
+Visuell: Der gesamte vertikale Inhaltsbereich dockt am oberen Bildschirmrand an und wird zur Navigationsleiste. Die Scroll-Achse wechselt von vertikal zu horizontal. Ein animierter Indikator (Pfeil und Scroll-Leiste) macht diesen Wechsel unmissverständlich klar.
+Text: "Sehen Sie sich unsere Arbeit an."
+5.2. Core Feature 2: Interaktive Projektgalerie
+Ein horizontal scrollbarer Bereich, der die Projekte von "berneby development" präsentiert.
+Komponente: InfiniteScroll. Die Galerie scrollt endlos und reagiert auf Mausrad, Touch-Gesten und horizontales Ziehen.
+Elemente: TiltedCards. Jedes Projekt wird als leicht geneigte 3D-Karte dargestellt.
+Hover-Interaktion: Bei Hover richtet sich die Karte auf und hebt sich aus der Reihe. Das Bild innerhalb der Karte erzeugt einen Parallax-Effekt, der sich entgegengesetzt zur Mausbewegung bewegt.
+Tech-Stack Icons: Beim Hover erscheinen zusätzlich die Icons der verwendeten Technologien (Ihre Wahl 6), die jeweils eine kleine Animation haben.
+Daten: Alle Projekt-Daten (Titel, Beschreibung, Bilder, Tech-Stack) werden aus dem Headless CMS geladen.
+5.3. Core Feature 3: Interaktiver Projekt-Blueprint & Kontakt
+Der primäre Weg zur Kontaktaufnahme, der nach der Projektgalerie folgt.
+Interaktiver Modus: "Collaborative Blueprint"
+Erlebnis: Eine minimalistische, virtuelle Leinwand. Der Nutzer zieht vordefinierte "Feature-Blöcke" (z.B. "Benutzer-Login", "3D-Produkt-Viewer") auf ein Raster, um sein Projekt visuell zu skizzieren.
+Live-Feedback: Eine seitliche Anzeige visualisiert die wachsende Komplexität und eine grobe Aufwandsschätzung (z.B. ein Balken, der sich von "S" zu "XL" füllt).
+Abschluss: Der erstellte Blueprint wird zusammen mit den Kontaktdaten übermittelt.
+Einfache Alternative: "Quick-Connect"-Button
+Erlebnis: Ein klar sichtbarer Button neben dem Blueprint. Ein Klick öffnet ein bildschirmfüllendes Modal-Fenster mit einem minimalistischen, klassischen Kontaktformular (Name, E-Mail, Nachricht).
+5.4. Core Feature 4: Personalisierte Bestätigung ("Projekt-Echo")
+Nach dem Absenden einer Anfrage wird eine personalisierte Bestätigungsseite angezeigt.
+Logik: Das System analysiert die übermittelten Daten (ausgewählte Blöcke oder Text).
+Beispiel: Hat der Nutzer den Block "3D-Produkt-Viewer" hinzugefügt, könnte die "Danke"-Nachricht über einem sich langsam drehenden, abstrakten 3D-Objekt schweben. Hat er "E-Commerce" erwähnt, könnte eine subtile Animation von Warenkorb-Symbolen im Hintergrund laufen.
+5.5. Weitere Features & Unterseiten
+Hybride Architektur: Über eine dezente Navigation sind folgende, statisch gerenderte und SEO-optimierte Unterseiten erreichbar:
+/leistungen: Detaillierte Beschreibung der angebotenen Dienstleistungen.
+/ueber-uns: Vorstellung des Teams und der Unternehmensgeschichte.
+/impressum & /datenschutz: Rechtlich notwendige Seiten.
+"Blick unter die Haube"-Easter-Egg: Bei Öffnen der Entwickler-Konsole wird ein ASCII-Art-Logo und eine Grußbotschaft angezeigt.
+5.6. Non-Goals (Out of Scope für Version 1.0)
+Ein voll funktionsfähiger Blog. Die /insights-Seite wird vorbereitet, aber initial nur mit 1-2 Teaser-Artikeln bestückt.
+Mehrsprachigkeit. Die Seite wird initial nur auf Deutsch umgesetzt.
+Ein komplexes Backend mit Benutzer-Logins für Kunden.
+6. 🚀 Implementation Timeline
+Phase 1: Foundation & Design System (Wochen 1-3)
+[ ] Setup des Tech-Stacks (Next.js, Tailwind, Storybook).
+[ ] Aufbau der CI/CD-Pipeline.
+[ ] Definition aller Design-Tokens (Farben, Typo, Spacing).
+[ ] Erstellung der Basis-Atome (Buttons, Inputs) im Design System.
+Phase 2: Narrative & Core Frontend (Wochen 4-7)
+[ ] Implementierung der Scrollytelling-Struktur mit Platzhalter-Inhalten.
+[ ] Entwicklung des BlobCursor und des berneby-Pass.
+[ ] Aufbau der InfiniteScroll-Galerie mit TiltedCards.
+Phase 3: Backend & CMS Integration (Wochen 8-10)
+[ ] Setup des Headless CMS (Strapi) und Definition der Content-Modelle.
+[ ] Entwicklung des modularen Monolithen für die Kontakt-Logik.
+[ ] Anbindung des Frontends an das CMS und die Backend-API.
+Phase 4: Interaktiver Kontakt & Testing (Wochen 11-13)
+[ ] Entwicklung des "Collaborative Blueprint" und des "Quick-Connect"-Modals.
+[ ] Implementierung des "Projekt-Echo".
+[ ] Umfassende manuelle und automatisierte Tests (Performance, Barrierefreiheit, Cross-Browser).
+Phase 5: Content-Befüllung & Launch (Woche 14)
+[ ] Finale Befüllung aller Inhalte über das CMS.
+[ ] Finale Audits und Go-Live.
+7. 🔍 Testing Strategy
+7.1. Test-Pyramide
+Unit/Component Tests (Vitest): Jede React-Komponente, insbesondere die interaktiven, wird isoliert getestet. Testabdeckung für kritische Komponenten > 90%.
+Integration Tests (API Contracts): Sicherstellung, dass die Kommunikation zwischen Frontend, Backend und CMS den definierten Verträgen entspricht.
+End-to-End Tests (Playwright): Automatisierte Tests der kritischen User-Flows:
+Die komplette Scrollytelling-Reise von Anfang bis Ende.
+Die erfolgreiche Übermittlung einer Anfrage über den "Collaborative Blueprint".
+Die erfolgreiche Übermittlung einer Anfrage über den "Quick-Connect"-Button.
+7.2. Manuelle Tests
+Barrierefreiheit: Regelmäßige manuelle Audits mit Tastatur-Navigation und Screenreadern (NVDA, VoiceOver) sind verpflichtend.
+Cross-Browser/Device Testing: Manuelle Überprüfung auf den neuesten Versionen von Chrome, Firefox, Safari und Edge sowie auf verschiedenen mobilen Geräten (iOS/Android).
+8. 📊 Performance Requirements
+8.1. Core Web Vitals
+LCP (Largest Contentful Paint): < 1.8 Sekunden.
+INP (Interaction to Next Paint): < 100 Millisekunden.
+CLS (Cumulative Layout Shift): < 0.1.
+8.2. Sonstige Metriken
+Time to First Byte (TTFB): < 400ms.
+API Response Time (p95): < 100ms.
+Gesamtgröße der JS-Payload (initial): < 150 KB.
+9. 🔒 Security Requirements
+OWASP Top 10: Alle relevanten Risiken müssen mitigiert werden.
+Input-Validierung: Strikte serverseitige Validierung aller Nutzereingaben aus den Kontaktformularen.
+Dependencies: Regelmäßige Scans auf bekannte Schwachstellen in allen Dependencies (z.B. mit npm audit).
+Headers: Implementierung von sicherheitsrelevanten HTTP-Headern (CSP, HSTS, X-Frame-Options).
+10. ♿ Accessibility Requirements
+Standard: WCAG 2.2, Level AA ist zwingend erforderlich.
+Anforderungen (Checkliste):
+[ ] Focus Not Obscured (Minimum): Sticky-Elemente dürfen niemals den Tastaturfokus verdecken.
+[ ] Dragging Movements: Der "Collaborative Blueprint" muss alternativ vollständig per Tastatur bedienbar sein.
+[ ] Target Size (Minimum): Alle interaktiven Elemente müssen eine Klickfläche von mindestens 24x24 CSS-Pixeln haben.
+[ ] Accessible Authentication (Minimum): Nicht direkt anwendbar, aber Prinzipien (keine Blockade von Copy-Paste) werden beachtet.
+"Bewegung reduzieren"-Modus:
+Ein klar sichtbarer Schalter wird implementiert.
+Bei Aktivierung werden alle komplexen Animationen (Scrollytelling-Bewegungen, Parallax, Cursor-Physik) durch einfache Fade-Übergänge ersetzt. Die Seite bleibt voll funktionsfähig.
+11. 🚨 Risk Assessment
+High Risk: Komplexität der Animationen: Die Choreografie der Scrollytelling-Reise und der Interaktionen ist extrem komplex und kann zu Performance-Problemen oder visuellen Fehlern führen.
+Mitigation: Kontinuierliches Performance-Profiling ab Tag 1. Entwicklung der komplexen Animationen in isolierten Prototypen (z.B. in Storybook oder CodePen) vor der Integration.
+Medium Risk: Browser-Inkonsistenzen: Insbesondere 3D- und CSS-Effekte können sich in verschiedenen Browsern unterschiedlich verhalten.
+Mitigation: Frühe und regelmäßige Cross-Browser-Tests. Nutzung von Feature-Detection und Bereitstellung von Fallbacks für nicht unterstützte CSS-Eigenschaften.
+12. 📈 Success Metrics
+Technisch:
+Erreichen aller definierten Performance-Ziele (Lighthouse, Core Web Vitals).
+Keine als "kritisch" eingestuften Fehler im Bug-Tracking-System zum Zeitpunkt des Launches.
+Accessibility-Score in automatisierten Tools > 98.
+Business:
+Durchschnittliche Verweildauer auf der Startseite > 2 Minuten.
+Conversion Rate (Besucher zu abgeschickter Anfrage) > 3%.
+Positives Feedback von potenziellen Kunden und aus der Entwickler-Community (z.B. auf Social Media, Awwwards).
+13. 🛠️ Development Guidelines
+13.1. Code Standards
+Sprache: TypeScript 5+ ("strict": true).
+Code Style: Biome wird für das Linting und die automatische Formatierung genutzt. Eine Konfiguration wird im Projekt-Root hinterlegt. Git-Hooks (Husky) stellen sicher, dass Code nur formatiert und ohne Linting-Fehler committet werden kann.
+Dokumentation:
+Storybook: Alle UI-Komponenten, insbesondere die aus dem react-bits-Fundus, werden in Storybook dokumentiert. Dies dient als lebendiges Design-System und interaktive Dokumentation.
+Code-Kommentare: Komplexe Logik, insbesondere in den Animations- und State-Management-Teilen, wird ausführlich im Code kommentiert.
+Commit-Nachrichten: Es wird der "Conventional Commits"-Standard verwendet, um eine klare und automatisierbare Commit-Historie zu gewährleisten.

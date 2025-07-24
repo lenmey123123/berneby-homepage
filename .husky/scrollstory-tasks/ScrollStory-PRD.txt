@@ -1,0 +1,69 @@
+Dokument 1: Konzept & Narrative Vision (PRD)
+Projekt: Interaktive Artefakt-DeKonstruktion (SVG/2.5D)
+Version: 2.1 (SVG/2.5D)
+Datum: 20.07.2025
+Status: Freigegeben zur Umsetzung
+
+1. Executive Summary
+Dieses Dokument definiert die narrative und konzeptionelle Grundlage des Scrollytelling-Erlebnisses für die berneby development Website. Die Kernidee ist eine rückwärts erzählte, interaktive Reise, bei der der Nutzer ein symbolisches, mehrschichtiges SVG-Blueprint-Objekt durch Scrollen dekonstruiert. Die Erzählung führt vom fertigen, polierten Endprodukt Schicht für Schicht zurück bis zum konzeptionellen Ursprung.
+
+Die Vision ist es, nicht nur eine Geschichte zu erzählen, sondern die methodische Tiefe, die technische Exzellenz und die kreative Philosophie hinter der Entwicklung komplexer Softwarelösungen erlebbar zu machen. Das Erlebnis ist als ultimativer Showcase konzipiert, der die Kompetenz von berneby development auf eine Weise demonstriert, die sowohl für Laien als auch für Fachexperten faszinierend und aufschlussreich ist.
+
+2. Narrative Struktur: Die Vier Phasen der DeKonstruktion
+Die Erzählung ist in vier Hauptphasen gegliedert, die der Nutzer in umgekehrter chronologischer Reihenfolge durchläuft. Jede Phase wird durch eine eigene Schicht des zentralen SVG-Blueprint-Stacks repräsentiert und von spezifischen Panel-Overlays begleitet.
+
+Phase 1: Das Live-Produkt (Scroll 0% - 25%)
+Narratives Ziel: Demonstration des finalen, perfekten Ergebnisses. Vermittlung von Zuverlässigkeit, Performance und einer makellosen, wertstiftenden Nutzererfahrung, unabhängig von der Plattform.
+Blueprint-Zustand: Das Objekt ist vollständig und intakt. Die Außenschicht ist poliert und geschlossen.
+Panel-Overlay: Das Schlüsselwort "Perfektion." erscheint.
+
+Phase 2: Die Entwicklung (Scroll 25% - 50%)
+Narratives Ziel: Einblick in die technische Umsetzung, die Systemarchitektur und die algorithmische Logik. Demonstration von sauberem Code, effizienten Prozessen und robuster Infrastruktur.
+Blueprint-Zustand: Die Außenschicht löst sich auf und enthüllt ein pulsierendes Netzwerk aus Linien und Formen, die die Kernlogik symbolisieren.
+Panel-Overlay: Das Schlüsselwort "Präzision." erscheint.
+
+Phase 3: Das Design & Die Architektur (Scroll 50% - 75%)
+Narratives Ziel: Darstellung des konzeptionellen und strukturellen Fundaments. Demonstration von anforderungsgerechtem Systemdesign, systemischem Denken und einem klaren architektonischen Plan.
+Blueprint-Zustand: Das technische Netzwerk löst sich auf und enthüllt semi-transparente Platten und Gitternetz-Strukturen, die Architektur-Blueprints und Design-Systeme symbolisieren.
+Panel-Overlay: Das Schlüsselwort "Intuition." erscheint.
+
+Phase 4: Die Idee (Scroll 75% - 100%)
+Narratives Ziel: Rückkehr zum Ursprungspunkt jeder Innovation – der reinen Idee. Vermittlung von Kreativität, strategischem Denken und dem Potenzial, das in einer Vision steckt.
+Blueprint-Zustand: Alle äußeren Schichten sind verschwunden. Nur der einzelne, sanft leuchtende "Ideen-Kern" schwebt im Zentrum.
+Panel-Overlay: Das Schlüsselwort "Potenzial." erscheint.
+
+3. Dramaturgie & Finaler Handlungsaufruf
+Das Erlebnis folgt einer klaren dramaturgischen Kurve, die in einem kraftvollen Finale mündet.
+
+Der Höhepunkt: Die "Re-Konstruktion"
+Nachdem der Nutzer Phase 4 erreicht hat, löst ein letzter Scroll eine schnelle "Schicht für Schicht"-Umkehr der gesamten Animation aus. Das Objekt baut sich in einem visuell beeindruckenden Crescendo wieder zu seiner finalen Form zusammen.
+
+Der Call-to-Action Text
+Unmittelbar nach der Re-Konstruktion wird der prägnante Text "Unsere Methode. Ihre Vision. Starten wir." prominent eingeblendet, um den Übergang zum Handlungsaufruf einzuleiten.
+
+Der Übergang: Der "Interface-Scan"
+Nachdem der Text erschienen ist, startet die finale Übergangsanimation. Eine vertikale Scan-Linie fährt über das SVG-Objekt und wandelt es in einem "Vertikalen 'Pixel-Slice'"-Effekt von oben nach unten in die 2D-Benutzeroberfläche des "Collaborative Blueprint"-Modals um.
+
+4. Informationsarchitektur & Content-Strategie
+Die Informationsvermittlung erfolgt auf zwei Ebenen, um sowohl einen schnellen, emotionalen Überblick als auch einen tiefen, detaillierten Einblick zu ermöglichen.
+
+Ebene 1: Panel-Overlays (Überblick)
+Funktion: Vermitteln die Kernbotschaft jeder Phase durch ein einziges, kraftvolles Wort.
+Inhalt: Ausschließlich die Schlüsselwörter "Perfektion.", "Präzision.", "Intuition.", "Potenzial."
+
+Ebene 2: Detail-Modals (Tiefgang)
+Funktion: Bieten optionalen, detaillierten Einblick in die Best Practices der jeweiligen Phase.
+Trigger: Klick auf ein Panel-Overlay.
+Konzept: Präsentation von idealisierten "Lehrbuch"-Beispielen, die methodische Sauberkeit und Exzellenz demonstrieren.
+
+5. Interaktivität & Sandbox-Modus
+- Interaktive SVG-Zonen (Hover, Klick) für jede Layer-Phase
+- ExpertInsight-Komponente als Overlay (SVG/HTML)
+- Sandbox-Modus: Manuelle Steuerung der Layer-Transitions und Parameter
+- Accessibility: Tastaturnavigation, ARIA-Attribute, prefers-reduced-motion
+- Testing: Unit- und E2E-Tests für alle Interaktionen und States
+
+6. Anpassungsfähigkeit & Fallback
+- Die 2.5D/SVG-Architektur ist Standard für alle modernen Browser und Geräte
+- Für leistungsschwache Systeme oder inkompatible Browser wird eine sequenzielle Bilder-Story als Fallback bereitgestellt
+- Die narrative Essenz und die visuelle Qualität der Marke bleiben unter allen Umständen gewahrt

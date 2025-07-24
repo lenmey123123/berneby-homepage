@@ -1,0 +1,63 @@
+ScrollStory Implementierung - Phase 2: SVG Blueprint & Visuelles System
+Ziel: Implementierung des visuellen Kerns des Erlebnisses: der "Blueprint-Layer-Stack". Dies umfasst die Gestaltung der SVG-Layer, die Erstellung der Panels und die Implementierung der animierten UI-Overlays.
+
+Dauer: 3 Wochen
+
+Fokus: SVG-Layer-Stack, fortgeschrittene Layer-Animationen (Framer Motion), visuelle Effekte und die Basis für die Panel-Komponente.
+
+💎 Blueprint-Layer (in layers/BlueprintLayerX.tsx)
+[ ] 1.1: Layer-Struktur definieren
+
+Ziel: Die Blueprint-Layer als separate SVG-Komponenten für jede Phase aufbauen.
+
+Anforderungen:
+[ ] Erstelle für jede Phase eine eigene SVG-Komponente (BlueprintLayer1-4).
+[ ] Die Layer sind logisch verschachtelt und können einzeln animiert werden.
+[ ] Struktur: Die Layer sind so gestaltet, dass sie fragmentiert, hervorgehoben und mit Panels/Insights kombiniert werden können.
+
+✨ Panel-System (in ui/Panel.tsx)
+[ ] 2.1: Panel-Komponente erstellen und exportieren
+
+Ziel: Zentralisierte Definition aller Panels, um sie wiederverwendbar und leicht anpassbar zu machen.
+
+Anforderungen:
+[ ] Erstelle eine Datei src/components/scroll-story/ui/Panel.tsx.
+[ ] Exportiere jedes Panel als benannte Konstante.
+[ ] Die Komponente akzeptiert title und children als Props.
+[ ] Style das Panel mit Tailwind CSS und Framer Motion für Ein-/Ausblend-Animationen.
+
+[ ] 2.2: Panel in ScrollStoryContainer.tsx integrieren
+
+Ziel: Eine erste Instanz des Panels im Overlay platzieren.
+
+Anforderungen:
+[ ] Platziere eine <Panel>-Instanz passend zur aktuellen Phase.
+[ ] Fülle sie mit Platzhalter-Text.
+[ ] Checkpoint: Der Blueprint-Layer-Stack und das Panel-Overlay sind sichtbar und animierbar.
+
+✨ Visuelle Effekte & Animationen
+[ ] 3.1: Layer- und Panel-Animationen mit Framer Motion
+
+Ziel: Die visuelle Qualität der Szene durch Effekte wie Fade, Slide, Morph zu verbessern.
+
+Anforderungen:
+[ ] Nutze Framer Motion für Layer- und Panel-Animationen.
+[ ] Layer können ein- und ausgeblendet, fragmentiert oder hervorgehoben werden.
+[ ] Panels erscheinen und verschwinden passend zur Phase.
+
+🧪 Testing & Validation
+[ ] 4.1: Layer- und Panel-Tests
+
+Ziel: Sicherstellen, dass die Layer und Panels korrekt konfiguriert und animiert sind.
+
+Anforderungen:
+[ ] Erstelle eine Storybook-Story für jede Layer- und Panel-Komponente.
+[ ] Schreibe Unit-Tests, die die Sichtbarkeit und Animationen überprüfen.
+
+[ ] 4.2: Performance-Check
+
+Ziel: Die Auswirkungen der neuen Layer und Effekte auf die Performance messen.
+
+Anforderungen:
+[ ] Miss die Framerate (FPS) mit Performance-Tools.
+Benchmark-Ziel: Die Framerate sollte stabil bei ~60 FPS bleiben. Wenn nicht, reduziere die Komplexität der SVGs oder die Intensität der Animationen.
